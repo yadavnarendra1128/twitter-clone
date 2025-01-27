@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import InputBox from "../../components/auth/InputBox";
-import BottomText from "../../components/auth/BottomText";
-import AltButton from "../../components/auth/AltButton";
+import InputBox from "../../components/Auth/InputBox";
+import BottomText from "../../components/Auth/BottomText";
+import AltButton from "../../components/Auth/AltButton";
 import Button from "../../components/common/Button";
 import XSvg from "../../utils/svg/XSvg";
 
