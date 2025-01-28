@@ -19,16 +19,19 @@ const signUp = async (req, res) => {
         .json({ msg: "Bad Request Data", err: success.error.issues[0] });
     }
 
-    const { username, email, password, fullname} = body;
+    const { username, email, password, fullname } = body;
 
+    // Check if the email already exists
     const emailExists = await User.findOne({ email });
 
     if (emailExists) {
       return res.status(409).json({ msg: "Email already exists" });
     }
 
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Create the new user
     const user = await User.create({
       username,
       email,
@@ -36,19 +39,19 @@ const signUp = async (req, res) => {
       fullname,
     });
 
-if (!user || !user._id) {
-  return res.status(500).json({ msg: "Error: User creation failed" });
-}
+    if (!user || !user._id) {
+      return res.status(500).json({ msg: "Error: User creation failed" });
+    }
 
-generateToken(user._id, res);
-
-    await generateToken(user._id, res);
+    // Generate JWT token for the user
+    generateToken(user._id, res);
 
     return res.status(201).json({
       userInfo: { fullname, email, username },
     });
   } catch (err) {
-    res.status(500).json({ msg: "Internal Server Error", err: err });
+    console.error("Sign Up Error:", err); // Log the error
+    res.status(500).json({ msg: "Internal Server Error", err: err.message });
   }
 };
 
@@ -61,35 +64,27 @@ const logIn = async (req, res) => {
     if (!success.success) {
       return res
         .status(400)
-        .json({ msg: "wrong input format", err: success.error.issues[0] });
+        .json({ msg: "Wrong input format", err: success.error.issues[0] });
     }
 
-    // if (body?.email) {
-    //   const Exists = await User.findOne({ email: body.email });
+    // Find the user by username
+    const Exists = await User.findOne({ username: body.username });
 
-    //   if (!Exists) {
-    //     return res.status(409).json({ msg: "Email doesn't exists" });
-    //   }
-    // }
+    if (!Exists) {
+      return res.status(409).json({ msg: "Username doesn't exist" });
+    }
 
-    // if (body?.username) {
-      const Exists = await User.findOne({ username: body.username });
+    // Check if the password matches
+    const isMatch = await bcrypt.compare(body.password, Exists.password);
 
-      if (!Exists) {
-        return res.status(409).json({ msg: "Username doesn't exists" });
-      }
+    if (!isMatch) {
+      return res.status(400).json({ msg: "Invalid password" });
+    }
 
-      const isMatch = await bcrypt.compare(body.password, Exists.password);
-
-      if (!isMatch) {
-        return res.status(400).json({ msg: "Invalid password" });
-      }
-    // }
-
+    // Generate JWT token for the logged-in user
     generateToken(Exists._id, res);
 
     const {
-      rest,
       _id,
       fullname,
       username,
@@ -100,7 +95,7 @@ const logIn = async (req, res) => {
       coverImg,
     } = Exists;
 
-    return res.status(201).json({
+    return res.status(200).json({
       data: {
         _id,
         fullname,
@@ -113,7 +108,8 @@ const logIn = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).json({ msg: "Internal Server Error", err: err });
+    console.error("Login Error:", err); // Log the error
+    res.status(500).json({ msg: "Internal Server Error", err: err.message });
   }
 };
 
@@ -129,7 +125,7 @@ const logOut = async (req, res) => {
 const myProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select("-password");
-    return res.status(200).json({user});
+    return res.status(200).json({ user });
   } catch (err) {
     return res.status(500).json({ error: "Internal Server Error" });
   }
@@ -139,10 +135,10 @@ const getCookie = async (req, res) => {
   try {
     const token = req.cookies?.jwt;
     if (!token) return res.status(401).json({ msg: "token is not presnt" });
-    return res.status(201).json({token})
-  }catch(err){
+    return res.status(201).json({ token });
+  } catch (err) {
     return res.status(500).json({ error: "cookie access failed" });
   }
-}
+};
 
-module.exports = { signUp, logIn, logOut, myProfile,getCookie};
+module.exports = { signUp, logIn, logOut, myProfile, getCookie };
