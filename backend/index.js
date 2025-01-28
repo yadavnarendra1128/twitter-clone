@@ -13,15 +13,18 @@ const app = express();
 const PORT = process.env.PORT || 3001; 
 
 const corsOptions = {
-  origin: "https://twitter-clone-1-ujja.onrender.com",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
+  origin: 'https://twitter-clone-1-ujja.onrender.com',  // Frontend domain
+  credentials: true,  // Allow cookies (credentials) to be sent with requests
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions));  // Apply CORS middleware
 
-app.use(express.json({ limit: "5mb" })); 
+
+app.use(express.json()); 
 app.use(cookieParser());
+
+const path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
 
 
 app.use("/api/auth", authRoutes);
