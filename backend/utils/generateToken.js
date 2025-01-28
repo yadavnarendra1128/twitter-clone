@@ -19,3 +19,5 @@ const generateToken = (userId, res) => {
     res.status(500).json({ msg: "Token creation failed", err: err.message });
   }
 };
+
+module.exports = generateToken;
