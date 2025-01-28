@@ -34,13 +34,6 @@ function App() {
       </div>
     );
 
-  if (error)
-    return (
-      <div className="w-screen h-screen bg-slate-800 flex justify-center items-center text-white">
-        <p>Error loading user data. Please try again.</p>
-      </div>
-    );
-
   return (
     <Routes>
       <Route path="/login" element={!data ? <Login /> : <Navigate to="/" />} />
