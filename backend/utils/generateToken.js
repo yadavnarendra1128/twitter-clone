@@ -10,7 +10,7 @@ const generateToken = (userId, res) => {
       maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days
       secure: process.env.NODE_ENV == "production", // Ensures cookie is sent over HTTPS
       httpOnly: true, // Prevents client-side access to the cookie
-      sameSite: "strict", // Prevents the browser from sending the cookie with cross-site requests
+      sameSite: "None", // to allow req from different domains.
     });
   } catch (err) {
     console.error("Token Generation Error:", err); // Log error
