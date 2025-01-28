@@ -30,6 +30,6 @@ app.use("/api/posts", postRoutes);
 app.use("/api/notifications", notificationRoutes);
 
 app.listen(PORT, () => {
-  connectDB()
   console.log(`Server is running on port ${PORT}`);
 });
+
