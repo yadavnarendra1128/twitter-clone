@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_BACKEND_TARGET_URL || "http://localhost:3001"; // Fallback for local development
+const BASE_URL = "https://twitter-clone-y8en.onrender.com"; // Fallback for local development
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL, 
