@@ -52,7 +52,7 @@ const Profile = () => {
       <div className="p-2 flex gap-x-2 items-center">
         <img
           onClick={() => navigate(-1)}
-          src="/src/assets/icons/arrow-left.svg"
+          src="/assets/icons/arrow-left.svg"
           alt="Back"
           className="w-6 h-6 rounded-full cursor-pointer"
         />
@@ -64,7 +64,7 @@ const Profile = () => {
         className="relative w-full h-20 bg-slate-700"
         style={{
           backgroundImage: `url(${
-            profile?.coverImg || "/src/assets/icons/banner.jpg"
+            profile?.coverImg || "/assets/icons/banner.jpg"
           })`,
           backgroundSize: "cover",
         }}
@@ -76,7 +76,7 @@ const Profile = () => {
       <div className="flex flex-row justify-start items-center py-4 px-6 bg-black border-2 relative border-gray-800">
         <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-slate-500">
           <img
-            src={profile?.profileImg || "/src/assets/defaultprofile.jpg"}
+            src={profile?.profileImg || "/assets/defaultprofile.jpg"}
             alt="User Avatar"
             className="w-full h-full object-cover"
           />

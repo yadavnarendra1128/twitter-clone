@@ -82,7 +82,7 @@ const CreatePost = () => {
   return (
     <div className="border-b-2 border-gray-800 flex gap-x-2 px-4 pt-4 w-full">
       <img
-        src={user?.profileImg || "/src/assets/defaultprofile.jpg"}
+        src={user?.profileImg || "/assets/defaultprofile.jpg"}
         className="w-10 text-white h-10 rounded-full object-cover"
         alt="User Img"
       />

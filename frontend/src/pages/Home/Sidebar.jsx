@@ -78,7 +78,7 @@ const Sidebar = () => {
         <div className="flex items-center">
           <img
             className="w-10 h-10 rounded-full overflow-hidden object-cover mr-2"
-            src={user?.profileImg || "/src/assets/defaultprofile.jpg"}
+            src={user?.profileImg || "/assets/defaultprofile.jpg"}
             alt="Profile"
           />
           <div className="relative w-[60%] bg-red-50 hidden sm:hidden lg:block">
@@ -95,7 +95,7 @@ const Sidebar = () => {
           <img
             onClick={handleLogout}
             className="w-10 h-10 px-2 sm:ml-2 bg-slate-800 flex justify-center items-center cursor-pointer rounded-lg"
-            src="/src/assets/icons/log-out.svg"
+            src="/assets/icons/log-out.svg"
             alt="Logout"
           />
         </div>

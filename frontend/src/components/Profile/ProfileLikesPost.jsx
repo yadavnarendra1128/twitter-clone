@@ -99,7 +99,7 @@ const ProfileLikesPost = ({ post }) => {
     <div className="border-b-2 relative border-gray-800 p-2 px-2 w-full">
       <img
         className="w-10 h-10 mt-1 rounded-full object-cover absolute left-3 top-3"
-        src={postUser?.profileImg || "/src/assets/defaultprofile.jpg"}
+        src={postUser?.profileImg || "/assets/defaultprofile.jpg"}
         alt={""}
       />
       <div className="ml-12 px-1">
@@ -115,7 +115,7 @@ const ProfileLikesPost = ({ post }) => {
           </Link>
           {user._id == post?.postBy?._id && (
             <img
-              src="\src\assets\icons\trash.svg"
+              src="/assets/icons/trash.svg"
               className="h-4 w-4 absolute right-3 top-2 cursor-pointer"
               alt=""
               onClick={deletePost}
@@ -158,7 +158,7 @@ const ProfileLikesPost = ({ post }) => {
               <button onClick={() => setIsCommentClicked((prev) => !prev)}>
                 <img
                   className="w-5 h-5"
-                  src="/src/assets/icons/message-square.svg"
+                  src="/assets/icons/message-square.svg"
                   alt={""}
                 />
               </button>
@@ -171,14 +171,14 @@ const ProfileLikesPost = ({ post }) => {
               <button onClick={handleLikeUnlike} disabled={isLikeDisabled}>
                 {postLiked ? (
                   <img
-                    src="/src/assets/icons/filledHeart.svg"
+                    src="/assets/icons/filledHeart.svg"
                     className="w-5 h-5"
                     alt=""
                   />
                 ) : (
                   <img
                     className="w-5 h-5"
-                    src="/src/assets/icons/heart.svg"
+                    src="/assets/icons/heart.svg"
                     alt=""
                   />
                 )}

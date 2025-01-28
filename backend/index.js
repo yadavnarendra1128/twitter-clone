@@ -17,6 +17,11 @@ const corsOptions = {
   credentials: true,  // Allow cookies (credentials) to be sent with requests
 };
 
+app.use((req, res, next) => {
+  console.log("Incoming request from IP:", req.ip);
+  next();
+});
+
 app.use(cors(corsOptions));  // Apply CORS middleware
 
 

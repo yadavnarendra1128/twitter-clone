@@ -21,7 +21,7 @@ const ProfileAccountItem = ({ acc,isUserProfile }) => {
       <div className="flex gap-x-2">
         <img
           className="w-10 h-10 rounded-full object-cover"
-          src={`${acc.profileImg}` || "/src/assets/defaultprofile.jpg"}
+          src={`${acc.profileImg}` || "/assets/defaultprofile.jpg"}
           alt="Profile"
         />
         <div className="relative">

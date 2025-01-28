@@ -74,7 +74,7 @@ const UpdateProfile = () => {
             <label className="block mb-2">Profile Image</label>
             <div className="flex items-center gap-4">
               <img
-                src={formData?.profileImg || user?.profileImg || "/src/assets/defaultprofile.jpg"}
+                src={formData?.profileImg || user?.profileImg || "/assets/defaultprofile.jpg"}
                 alt="Profile Preview"
                 className="w-16 h-16 rounded-full object-cover"
               />
@@ -113,7 +113,7 @@ const UpdateProfile = () => {
           <label className="block mb-2">Cover Image</label>
           <div className="flex items-center gap-4">
             <img
-              src={formData.coverImg || "/src/assets/icons/banner.jpg"}
+              src={formData.coverImg || "/assets/icons/banner.jpg"}
               alt="Cover Preview"
               className="w-full h-40 object-cover rounded-lg opacity-50"
             />
