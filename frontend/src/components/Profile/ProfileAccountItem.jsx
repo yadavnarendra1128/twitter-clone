@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../common/Button";
 
 import useFollowUnfollow from "../../hooks/useFollowUnfollow";
 import { handleProfileFollowingStatus } from "../../redux/Home/profileSlice";
 
-const ProfileAccountItem = ({ acc,isUserProfile }) => {
+const ProfileAccountItem = ({ acc, isUserProfile }) => {
   const [isFollowing, handleFollow] = useFollowUnfollow(acc?._id);
   const dispatch = useDispatch();
-  const {loading} = useSelector(state=>state.profile)
+  const { profile,loading } = useSelector((state) => state.profile);
 
-  useEffect(()=>{
-    isUserProfile && dispatch(handleProfileFollowingStatus(acc._id)) 
-  },[isFollowing])
+  const handleFollowClick = async () => {
+    await handleFollow();
+    isUserProfile && dispatch(handleProfileFollowingStatus(acc._id));
+  };
 
   return (
     <div className="py-1 flex w-full justify-between items-center">
@@ -37,7 +38,7 @@ const ProfileAccountItem = ({ acc,isUserProfile }) => {
       {isFollowing !== null && (
         <Button
           disabled={loading}
-          onClick={handleFollow}
+          onClick={handleFollowClick}
           text={isFollowing ? "Unfollow" : "Follow"}
           classes="text-black bg-white hover:bg-slate-200 px-3"
         />

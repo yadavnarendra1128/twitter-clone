@@ -112,7 +112,7 @@ const Post = ({ post }) => {
           </div>
           <Link
             to={`/profile/${postUser?.username}`}
-            className="text-md text-slate-400"
+            className="text-md text-slate-400 mt-1"
           >
             @{postUser?.username}
           </Link>

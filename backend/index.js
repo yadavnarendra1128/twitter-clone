@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-const connectDB = require("./config/db");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
 const postRoutes = require("./routes/post");
@@ -13,14 +12,10 @@ const app = express();
 const PORT = process.env.PORT || 3001; 
 
 const corsOptions = {
-  origin: 'https://twitter-clone-1-ujja.onrender.com',  // Frontend domain
-  credentials: true,  // Allow cookies (credentials) to be sent with requests
+  // origin: process.env.FRONTEND_URL, // Frontend domain
+  origin: "https://twitter-clone-1-ujja.onrender.com", // Frontend domain
+  credentials: true, // Allow cookies (credentials) to be sent with requests
 };
-
-app.use((req, res, next) => {
-  console.log("Incoming request from IP:", req.ip);
-  next();
-});
 
 app.use(cors(corsOptions));  // Apply CORS middleware
 

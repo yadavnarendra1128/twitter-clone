@@ -19,6 +19,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const {data:user}=useSelector(state=>state.user)
   const { profile, loading } = useSelector((state) => state.profile);
 
   const [activeTab, setActiveTab] = useState("Posts");
@@ -111,7 +112,7 @@ const Profile = () => {
           </div>
         </div>
         {/* Follow Button */}
-        {isFollowing != null ? (
+        {user.username!=username ? (
           <Button
             onClick={handleFollow}
             text={isFollowing ? "Unfollow" : "Follow"}

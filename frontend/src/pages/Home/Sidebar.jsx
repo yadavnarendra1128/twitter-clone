@@ -82,12 +82,14 @@ const Sidebar = () => {
             alt="Profile"
           />
           <div className="relative w-[60%] bg-red-50 hidden sm:hidden lg:block">
-            <div className="text-lg font-semibold text-white absolute -bottom-1">
-              {(user?.fullname.length<0) ? user.fullname.split(" ")[0]:user.fullname || "fullname"}
+            <div className="text-lg font-semibold text-white absolute -bottom-1 ml-1">
+              {user?.fullname.length < 0
+                ? user.fullname.split(" ")[0]
+                : user.fullname || "fullname"}
             </div>
             <Link
               to={`/profile/${user.username}`}
-              className="text-sm text-slate-400 absolute -bottom-5"
+              className="text-sm text-slate-400 absolute -bottom-6"
             >
               @{user?.username || "username"}
             </Link>

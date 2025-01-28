@@ -10,7 +10,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 const CreatePost = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  const { data:user } = useSelector((state) => state.user);
 
   const [text, setText] = useState("");
   const [error, setError] = useState("");
